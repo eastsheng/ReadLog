@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: ReadLog
+Version: 1.0.3
+Summary: Read lammps output file or log file
+Home-page: https://github.com/eastsheng
+Author: CHENDONGSHENG
+Author-email: eastsheng@hotmail.com
