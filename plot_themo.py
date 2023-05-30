@@ -3,7 +3,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-	path = "./"
+	path = "./Pristine/"
 	logfile = "1_hydrate_dissociation_log.lammps"
 	atm2mPa = 0.101325
 	nf_log = 3 # The number of logs in logfile
@@ -16,15 +16,17 @@ if __name__ == '__main__':
 	print("Your label list of thermo :\n",pd_thermo.columns)
 	print("*",20*"-","Reading END!!!!!!!!!!!!",20*"-","*")
 	plt.rc('font', family='Times New Roman', size=22)
-	fig = plt.figure(figsize=(12, 10))
+	fig = plt.figure(figsize=(12, 8))
 	ax = fig.add_subplot(1,1,1)
-	ax.plot(pd_thermo["Step"]*1e-3,pd_thermo['PotEng'],color='r',label="PotEng")
+	x = pd_thermo["Step"]*1e-3
+	y = pd_thermo['PotEng']
+	ax.plot(x,y,color='r',label="PotEng")
 	plt.legend(loc="best")
 	# ax.set_xlim([0,10000])
 	# ax.set_ylim([-800,800])
-	ax.set_xlabel("Time (ps)")
-	ax.set_ylabel("PotEng (kcal/mol)")
+	ax.set_xlabel("Time (ps)",fontweight="bold",fontsize=26)
+	ax.set_ylabel("PotEng (kcal/mol)",fontweight="bold",fontsize=26)
 	# ax.grid(True)
 	
-	# plt.savefig(path+"imgs/PressTemp.png",dpi=300)
+	plt.savefig(path+"imgs/PotEng.png",dpi=300)
 	plt.show()	
