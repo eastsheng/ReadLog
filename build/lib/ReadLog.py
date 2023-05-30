@@ -1,5 +1,5 @@
 """
-read lammps log file for some thermo dat
+read lammps log file for some thermo data
 """
 import numpy as np
 import pandas as pd
