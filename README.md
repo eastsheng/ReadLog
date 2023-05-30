@@ -1,6 +1,6 @@
 ## ReadLog
 
-- A python code to read thermo info of log file from lammps
+- A python code to read thermo info from lammps log file 
 
 ### Installation 
 
@@ -8,8 +8,14 @@
 git clone https://github.com/eastsheng/ReadLog.git
 cd ReadLog
 python setup.py sdist
-python setup.py install
+pip install .
 ```
+
+### Requirements
+
+- numpy
+- pandas
+- matplotlib
 
 ### Usage 
 

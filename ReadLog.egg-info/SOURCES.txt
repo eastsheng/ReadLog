@@ -1,3 +1,4 @@
+README.md
 ReadLog.py
 setup.py
 ReadLog.egg-info/PKG-INFO
