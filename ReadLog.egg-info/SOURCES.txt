@@ -1,7 +1,0 @@
-README.md
-ReadLog.py
-setup.py
-ReadLog.egg-info/PKG-INFO
-ReadLog.egg-info/SOURCES.txt
-ReadLog.egg-info/dependency_links.txt
-ReadLog.egg-info/top_level.txt
