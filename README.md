@@ -23,7 +23,7 @@ pip install .
 import readlog as RLog
 rl = RLog.ReadLog(logfile)
 thermou_list,thermod_list = rl.ReadUD(path+logfile)
-pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log)
+pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log=0)
 step = pd_thermo["Step"]
 P = pd_thermo["Press"]
 T = pd_thermo["Temp"]
