@@ -20,7 +20,7 @@ pip install .
 ### Usage 
 
 ```python
-import ReadLog as RLog
+import readlog as RLog
 rl = RLog.ReadLog(logfile)
 thermou_list,thermod_list = rl.ReadUD(path+logfile)
 pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log)

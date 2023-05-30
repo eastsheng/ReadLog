@@ -1,8 +1,14 @@
 README.md
 setup.py
 src/ReadLog.py
+src/readlog.py
 src/ReadLog.egg-info/PKG-INFO
 src/ReadLog.egg-info/SOURCES.txt
 src/ReadLog.egg-info/dependency_links.txt
 src/ReadLog.egg-info/requires.txt
 src/ReadLog.egg-info/top_level.txt
+src/readlog.egg-info/PKG-INFO
+src/readlog.egg-info/SOURCES.txt
+src/readlog.egg-info/dependency_links.txt
+src/readlog.egg-info/requires.txt
+src/readlog.egg-info/top_level.txt
