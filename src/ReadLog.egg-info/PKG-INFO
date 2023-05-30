@@ -2,6 +2,6 @@ Metadata-Version: 2.1
 Name: readlog
 Version: 1.1.0
 Summary: Read themo info from lammps output file or log file
-Home-page: https://github.com/eastsheng/ReadLog
+Home-page: https://github.com/eastsheng/readlog
 Author: CHENDONGSHENG
 Author-email: eastsheng@hotmail.com

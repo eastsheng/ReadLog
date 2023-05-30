@@ -15,7 +15,7 @@ author_email = 'eastsheng@hotmail.com',
 packages=find_packages('src'),
 package_dir={'': 'src'},
 install_requires=open('requirements.txt').readlines(),
-url          = 'https://github.com/eastsheng/ReadLog',
+url          = 'https://github.com/eastsheng/readlog',
 description  = 'Read themo info from lammps output file or log file'
 )
 
