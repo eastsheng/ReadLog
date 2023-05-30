@@ -1,4 +1,4 @@
-import ReadLog as RLog
+import readlog as RLog
 from pathlib import Path
 import matplotlib.pyplot as plt
 
