@@ -1,4 +1,6 @@
+MANIFEST.in
 README.md
+requirements.txt
 setup.py
 src/readlog.py
 src/readlog.egg-info/PKG-INFO
