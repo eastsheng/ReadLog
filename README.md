@@ -27,7 +27,7 @@ pip install readlog
   ```
 
 - out:
-- ![](README/_img/PotEng.png)
+- ![](./demo/imgs/PotEng.png)
 
 
 
