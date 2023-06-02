@@ -3,3 +3,4 @@ include requirements.txt
 readlog.py
 setup.py
 README.md
+recursive-include demo *

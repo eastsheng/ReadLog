@@ -1,7 +1,13 @@
 MANIFEST.in
+README
 README.md
 requirements.txt
 setup.py
+demo/log.lammps
+demo/log_incomplete.lammps
+demo/plot_themo.py
+demo/__pycache__/readlog.cpython-311.pyc
+demo/imgs/PotEng.png
 src/readlog.py
 src/readlog.egg-info/PKG-INFO
 src/readlog.egg-info/SOURCES.txt

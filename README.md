@@ -5,10 +5,11 @@
 ### Installation 
 
 ```bash
-git clone https://github.com/eastsheng/ReadLog.git
-cd ReadLog
-python setup.py sdist
+git clone https://github.com/eastsheng/readlog.git
+cd readlog
 pip install .
+# or
+pip install readlog
 ```
 
 ### Requirements
@@ -19,13 +20,20 @@ pip install .
 
 ### Usage 
 
-```python
-import readlog as RLog
-rl = RLog.ReadLog(logfile)
-thermou_list,thermod_list = rl.ReadUD(path+logfile)
-pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log=0)
-step = pd_thermo["Step"]
-P = pd_thermo["Press"]
-T = pd_thermo["Temp"]
-```
+- run `plot_themo.py` in `demo` folder:
+
+  ```bash
+  python plot_thermo.py
+  ```
+
+- out:
+- ![](README/_img/PotEng.png)
+
+
+
+### Fixed
+
+- [x] Adapting to incomplete thermo information.
+
+  
 
