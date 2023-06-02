@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: readlog
-Version: 1.1.5
+Version: 1.1.6
 Summary: Read themo info from lammps output file or log file
 Home-page: https://github.com/eastsheng/readlog
 Author: CHENDONGSHENG
@@ -14,10 +14,11 @@ Description-Content-Type: text/markdown
 ### Installation 
 
 ```bash
-git clone https://github.com/eastsheng/ReadLog.git
-cd ReadLog
-python setup.py sdist
+git clone https://github.com/eastsheng/readlog.git
+cd readlog
 pip install .
+# or
+pip install readlog
 ```
 
 ### Requirements
@@ -35,11 +36,13 @@ pip install .
   ```
 
 - out:
-- ![](README/_img/PotEng.png)
+- ![](./demo/imgs/PotEng.png)
 
 
 
 ### Fixed
 
-- Can adapt to incomplete thermo information
+- [x] Adapting to incomplete thermo information.
+
+  
 

@@ -8,6 +8,7 @@ demo/log_incomplete.lammps
 demo/plot_themo.py
 demo/__pycache__/readlog.cpython-311.pyc
 demo/imgs/PotEng.png
+demo/imgs/PotEng_incomplete.png
 src/readlog.py
 src/readlog.egg-info/PKG-INFO
 src/readlog.egg-info/SOURCES.txt
