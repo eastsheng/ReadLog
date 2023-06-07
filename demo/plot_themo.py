@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
 	path = "./"
-	logfile = "log_incomplete.lammps"
+	logfile = "log.lammps"
 	atm2mPa = 0.101325
 	nf_log = 0 # The number of logs in logfile
 	time_step = 1 # fs
@@ -32,5 +32,6 @@ if __name__ == '__main__':
 	# ax.grid(True)
 
 	# pd_thermo.to_csv(path+"imgs/themo.csv")	
-	plt.savefig(path+"imgs/PotEng_incomplete.png",dpi=300)
+	plt.savefig(path+"imgs/PotEng.png",dpi=300)
+	# plt.savefig(path+"imgs/PotEng_incomplete.png",dpi=300)
 	plt.show()	

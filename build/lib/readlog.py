@@ -58,6 +58,8 @@ class ReadLog(object):
 			elif L_u>L_d:
 				if i==L_u-1:
 					n_line = self.tot_line_number-1-thermou_list[i]-1
+				else:
+					n_line = thermod_list[i]-thermou_list[i]-1
 
 			if nf_log==i:
 				thermo_col = np.loadtxt(LogFile,dtype="str",encoding='utf-8',skiprows=thermou_list[i]-1,max_rows=1)

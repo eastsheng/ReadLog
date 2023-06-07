@@ -1,6 +1,6 @@
 ## ReadLog
 
-- A python code to read thermo info from lammps log file 
+- A python code to read thermo info from the log file of lammps output
 
 ### Installation 
 
@@ -10,6 +10,7 @@ cd readlog
 pip install .
 # or
 pip install readlog
+pip install readlog -i https://pypi.org/simple
 ```
 
 ### Requirements
@@ -33,7 +34,7 @@ pip install readlog
 
 ### Fixed
 
-- [x] Adapting to incomplete thermo information.
+- [x] Fixed a read error in the complete message frame under incomplete message
 
-  
+
 

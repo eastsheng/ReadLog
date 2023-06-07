@@ -15,7 +15,7 @@ with open("requirements.txt","r") as f:
 
 setup(
 name         = 'readlog',
-version      = '1.1.6',
+version      = '1.1.7',
 py_modules   = ['readlog'],
 author       = 'CHENDONGSHENG',
 author_email = 'eastsheng@hotmail.com',
