@@ -6,24 +6,27 @@ import pandas as pd
 # from pathlib import Path
 import matplotlib.pyplot as plt
 
+version = "1.2.0"
+
 def print_readlog():
     cloud = [
-	"	                        _  _          	   	 ",
-	"	 _ __   ___   __ _   __| || |  ___    __ _ 	 ",
-	"	| '__| / _ \ / _` | / _` || | / _ \  / _` |	 ",
-	"	| |   |  __/| (_| || (_| || || (_) || (_| |	 ",
-	"	|_|    \___| \__,_| \__,_||_| \___/  \__, |	 ",
-	"	                                     |___/ 	 ",
-	"	                                     	 	 ", 
+	"                        _  _               ",
+	" _ __   ___   __ _   __| || |  ___    __ _ ",
+	"| '__| / _ \ / _` | / _` || | / _ \  / _` |",
+	"| |   |  __/| (_| || (_| || || (_) || (_| |",
+	"|_|    \___| \__,_| \__,_||_| \___/  \__, |",
+	"                                     |___/ ",
     ]
-
-    print(51*"*")
-    print(51*"*")
+    print("\n")
+    print(22*"- ")
+    print(22*". ")
     for line in cloud:
-        print(2*"*"+line+2*"*")
+        print(line)
+    print('@readlog-'+version,", Good Luck!")
+    print(22*". ")
+    print(22*"- ")
+    return None
 
-    print(51*"*")
-    print(51*"*")
 print_readlog()
 
 
