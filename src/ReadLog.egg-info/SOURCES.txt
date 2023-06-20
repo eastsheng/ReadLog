@@ -4,6 +4,7 @@ README.md
 requirements.txt
 setup.py
 demo/1_hydrate_dissociation_log.lammps
+demo/log.lammps
 demo/log_incomplete.lammps
 demo/plot_themo.py
 demo/readlog.py

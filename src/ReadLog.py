@@ -6,6 +6,27 @@ import pandas as pd
 # from pathlib import Path
 import matplotlib.pyplot as plt
 
+def print_readlog():
+    cloud = [
+	"	                        _  _          	   	 ",
+	"	 _ __   ___   __ _   __| || |  ___    __ _ 	 ",
+	"	| '__| / _ \ / _` | / _` || | / _ \  / _` |	 ",
+	"	| |   |  __/| (_| || (_| || || (_) || (_| |	 ",
+	"	|_|    \___| \__,_| \__,_||_| \___/  \__, |	 ",
+	"	                                     |___/ 	 ",
+	"	                                     	 	 ", 
+    ]
+
+    print(51*"*")
+    print(51*"*")
+    for line in cloud:
+        print(2*"*"+line+2*"*")
+
+    print(51*"*")
+    print(51*"*")
+print_readlog()
+
+
 class ReadLog(object):
 	"""docstring for ClassName"""
 	def __init__(self, logfile):
@@ -44,7 +65,7 @@ class ReadLog(object):
 				print("Frame-"+str(i)+":","["+str(thermou_list[i])+",",str(thermod_list[i])+"]")
 			except:
 				print("Frame-"+str(i)+":","["+str(thermou_list[i])+", ~]")
-				print("Warning: Your logfile is incomplete..., please check it.")
+				print("Warning: Your logfile is incomplete...\nPlease check it.")
 
 		return thermou_list,thermod_list
 
@@ -69,14 +90,37 @@ class ReadLog(object):
 				pass
 		return pd_thermo
 
+	def ReadRunTime(self):
+		LogFile=self.logfile
+		with open(LogFile,"r",encoding="utf-8") as lf:
+			for index, line in enumerate(lf,1):
+				if "Total wall time" in line:
+					isTTime = True
+			try:
+				if isTTime == True:
+					print("\n-------------------------------\n")
+					print("---", line)					
+					print("-------------------------------\n")
+			except:
+				print("\n-------------------------------\n")
+				print("Warning: No Total wall time in Your Logfile...\n\nPlease check it.")
+				print("\n-------------------------------\n")
+	
+		return 
+
+
 if __name__ == '__main__':
 	path = "./"
 	logfile = "log.lammps"
+	# logfile = "log_incomplete.lammps"
 	atm2mPa = 0.101325
 	nf_log = 0 # The number of logs in logfile
 
 	# Path(path+"imgs/").mkdir(parents=True,exist_ok=True)
 	rl = ReadLog(path+logfile) 
+	rl.ReadRunTime()
+
+	"""
 	print("*",20*"-","Reading frames of themo",20*"-","*")
 	thermou_list,thermod_list = rl.ReadUD(path+logfile)
 	pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log)
@@ -94,4 +138,5 @@ if __name__ == '__main__':
 	# ax.grid(True)
 	
 	# plt.savefig(path+"imgs/PressTemp.png",dpi=300)
-	plt.show()		
+	# plt.show()	
+	"""	
