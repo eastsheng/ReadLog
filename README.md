@@ -10,7 +10,6 @@ cd readlog
 pip install .
 # or
 pip install readlog
-pip install readlog -i https://pypi.org/simple
 ```
 
 ### Requirements
@@ -34,9 +33,17 @@ pip install readlog -i https://pypi.org/simple
 
 ### Fixed
 
-- [x] Fixed a read error in the complete message frame under incomplete message;
-- [x] add `print_readlog` function;
-- [x] add `ReadRunTime`function.
+- 2023-09-16: v1.2.1
+  - [x] Fixed `UnicodeDecodeError: 'utf-8' codec can't decode` problem.
+
+- 2023-06-20: v1.2.0
+
+  - [x] Fixed a read error in the complete message frame under incomplete message;
+
+  - [x] add `print_readlog` function;
+
+  - [x] add `ReadRunTime`function.
+
 
 
 

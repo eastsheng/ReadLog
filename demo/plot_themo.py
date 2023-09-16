@@ -6,7 +6,7 @@ if __name__ == '__main__':
 	path = "./"
 	logfile = "log.lammps"
 	atm2mPa = 0.101325
-	nf_log = 0 # The number of logs in logfile
+	nf_log = 5 # The number of logs in logfile
 	time_step = 1 # fs
 
 	Path(path+"imgs/").mkdir(parents=True,exist_ok=True)

@@ -91,7 +91,9 @@ class ReadLog(object):
 				pd_thermo = pd.DataFrame(thermo_data,columns=thermo_col)
 			else:
 				pass
+		
 		return pd_thermo
+
 
 	def ReadRunTime(self):
 		LogFile=self.logfile

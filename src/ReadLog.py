@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 read lammps log file for some thermo data
 """
@@ -6,7 +7,7 @@ import pandas as pd
 # from pathlib import Path
 import matplotlib.pyplot as plt
 
-version = "1.2.0"
+version = "1.2.1"
 
 def print_readlog():
     cloud = [
@@ -45,21 +46,39 @@ class ReadLog(object):
 		read line number of thermo info from logfile
 		LogFile: LAMMPS log file
 		'''
-		with open(LogFile,"r",encoding="utf-8") as lf:
-			thermou_list=[] # top number of line in thermo info 
-			thermod_list=[] # bottom number of line in thermo info 
-			for index, line in enumerate(lf,1):
-				# print(line)
-				if "Per MPI rank memory allocation" in line:
+		try:
+			with open(LogFile,"r",encoding="utf-8") as lf:
+				thermou_list=[] # top number of line in thermo info 
+				thermod_list=[] # bottom number of line in thermo info 
+				for index, line in enumerate(lf,1):
 					# print(line)
-					thermou = index+1
-					thermou_list.append(thermou)
-				if "Loop time of " in line:
-					# print(line)
-					thermod = index
-					thermod_list.append(thermod)
+					if "Per MPI rank memory allocation" in line:
+						# print(line)
+						thermou = index+1
+						thermou_list.append(thermou)
+					if "Loop time of " in line:
+						# print(line)
+						thermod = index
+						thermod_list.append(thermod)
 
-				self.tot_line_number = index
+					self.tot_line_number = index
+
+		except:
+			with open(LogFile,"r",encoding="gb18030") as lf:
+				thermou_list=[] # top number of line in thermo info 
+				thermod_list=[] # bottom number of line in thermo info 
+				for index, line in enumerate(lf,1):
+					# print(line)
+					if "Per MPI rank memory allocation" in line:
+						# print(line)
+						thermou = index+1
+						thermou_list.append(thermou)
+					if "Loop time of " in line:
+						# print(line)
+						thermod = index
+						thermod_list.append(thermod)
+
+					self.tot_line_number = index
 
 		# print(thermou_list,thermod_list)
 		print("Tot number of line:",self.tot_line_number)
@@ -86,8 +105,14 @@ class ReadLog(object):
 					n_line = thermod_list[i]-thermou_list[i]-1
 
 			if nf_log==i:
-				thermo_col = np.loadtxt(LogFile,dtype="str",encoding='utf-8',skiprows=thermou_list[i]-1,max_rows=1)
-				thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='utf-8')#.reshape((1,-1))
+				try:
+
+					thermo_col = np.loadtxt(LogFile,dtype="str",encoding='utf-8',skiprows=thermou_list[i]-1,max_rows=1)
+					thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='utf-8')#.reshape((1,-1))
+				except:
+					thermo_col = np.loadtxt(LogFile,dtype="str",encoding='gb18030',skiprows=thermou_list[i]-1,max_rows=1)
+					thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='gb18030')#.reshape((1,-1))
+					
 				pd_thermo = pd.DataFrame(thermo_data,columns=thermo_col)
 			else:
 				pass
