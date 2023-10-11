@@ -6,14 +6,14 @@ if __name__ == '__main__':
 	path = "./"
 	logfile = "log.lammps"
 	atm2mPa = 0.101325
-	nf_log = 5 # The number of logs in logfile
+	nf_log = 0 # The number of logs in logfile
 	time_step = 1 # fs
 
 	Path(path+"imgs/").mkdir(parents=True,exist_ok=True)
 	rl = RLog.ReadLog(path+logfile) 
 	print("*",20*"-","Reading frames of themo",20*"-","*")
-	thermou_list,thermod_list = rl.ReadUD(path+logfile)
-	pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log)
+	# thermou_list,thermod_list = rl.ReadUD(path+logfile)
+	pd_thermo = rl.ReadThermo(nf_log)
 	print("Your label list of thermo :",pd_thermo.columns)
 	print("*",20*"-","Reading END!!!!!!!!!!!!",20*"-","*")
 	plt.rc('font', family='Times New Roman', size=22)

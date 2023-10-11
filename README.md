@@ -33,9 +33,10 @@ pip install readlog
 
 ### Fixed
 
+- 2023-10-11: v1.2.2
+  - [x] a great modification
 - 2023-09-16: v1.2.1
   - [x] Fixed `UnicodeDecodeError: 'utf-8' codec can't decode` problem.
-
 - 2023-06-20: v1.2.0
 
   - [x] Fixed a read error in the complete message frame under incomplete message;
@@ -43,7 +44,6 @@ pip install readlog
   - [x] add `print_readlog` function;
 
   - [x] add `ReadRunTime`function.
-
 
 
 
