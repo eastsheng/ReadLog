@@ -7,7 +7,7 @@ import pandas as pd
 # from pathlib import Path
 import matplotlib.pyplot as plt
 
-version = "1.2.1"
+version = "1.2.2"
 
 def print_readlog():
     cloud = [
@@ -41,13 +41,13 @@ class ReadLog(object):
 		x = x*1e-3 #fs2ps
 		return x
 
-	def ReadUD(self,LogFile):
+	def ReadUD(self):
 		'''
 		read line number of thermo info from logfile
-		LogFile: LAMMPS log file
 		'''
+		LogFile = self.logfile
 		try:
-			with open(LogFile,"r",encoding="utf-8") as lf:
+			with open(self.logfile,"r",encoding="utf-8") as lf:
 				thermou_list=[] # top number of line in thermo info 
 				thermod_list=[] # bottom number of line in thermo info 
 				for index, line in enumerate(lf,1):
@@ -91,10 +91,11 @@ class ReadLog(object):
 
 		return thermou_list,thermod_list
 
-	def ReadThermo(self,LogFile,thermou_list,thermod_list,nf_log=0):
+	def ReadThermo(self,nf_log=0):
+		thermou_list,thermod_list = self.ReadUD()
 		L_u = len(thermou_list)
 		L_d = len(thermod_list)
-
+		LogFile = self.logfile
 		for i in range(L_u):
 			if L_u == L_d:
 				n_line = thermod_list[i]-thermou_list[i]-1
@@ -135,6 +136,27 @@ class ReadLog(object):
 				print("\n-------------------------------\n")
 	
 		return 
+
+	def ReadTimestep(self):
+		LogFile=self.logfile
+		with open(LogFile,"r",encoding="utf-8") as lf:
+			have_timestep=[]
+			for index, line in enumerate(lf,1):
+				if "timestep" in line:
+					have_timestep.append(line)
+
+		# time_step = int(time_step.strip().split()[1])
+		# print(have_timestep)
+		for ht in have_timestep:
+			if "${" in ht or "}" in ht or "reset_" in ht or "Performance" in ht or "variable" in ht:
+				pass
+			else:
+				try:
+					print(ht)
+					time_step = int(ht.strip().split()[1])
+					return time_step
+				except:
+					print("Warning: No 'timestep' in Your Logfile...\n\nPlease check it.")
 
 
 if __name__ == '__main__':

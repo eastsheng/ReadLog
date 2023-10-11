@@ -1,14 +1,14 @@
 Metadata-Version: 2.1
 Name: readlog
-Version: 1.2.1
+Version: 1.2.2
 Summary: Read themo info from lammps output file or log file
 Home-page: https://github.com/eastsheng/readlog
 Author: CHENDONGSHENG
 Author-email: eastsheng@hotmail.com
 Description-Content-Type: text/markdown
-Requires-Dist: matplotlib
-Requires-Dist: numpy
-Requires-Dist: pandas
+Requires-Dist: matplotlib>=3.7.2
+Requires-Dist: numpy>=1.26.0
+Requires-Dist: pandas>=2.0.3
 
 ## readlog
 
