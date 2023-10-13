@@ -5,17 +5,18 @@ pip install .
 
 # from distutils.core import setup
 from setuptools import setup, find_packages
-
+from src.readlog import __version__
 with open("README.md", "r") as f:
     long_description = f.read()
 
 with open("requirements.txt","r") as f:
     required = f.read().splitlines()
 
+version = __version__()
 
 setup(
 name         = 'readlog',
-version      = '1.2.2',
+version      = version,
 py_modules   = ['readlog'],
 author       = 'CHENDONGSHENG',
 author_email = 'eastsheng@hotmail.com',

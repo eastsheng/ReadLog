@@ -7,7 +7,9 @@ import pandas as pd
 # from pathlib import Path
 import matplotlib.pyplot as plt
 
-version = "1.2.2"
+def __version__():
+	version = "1.2.3"
+	return version
 
 def print_readlog():
     cloud = [
@@ -23,6 +25,7 @@ def print_readlog():
     print(22*". ")
     for line in cloud:
         print(line)
+    version = __version__()
     print('@readlog-'+version,", Good Luck!")
     print(22*". ")
     print(22*"- ")
