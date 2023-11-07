@@ -35,18 +35,31 @@ print_readlog()
 
 
 class ReadLog(object):
-	"""docstring for ClassName"""
+	"""
+	docstring for ReadLog
+	read thermo info from lammps logfile;
+	a instantiation: 	
+		rl = ReadLog(logfilename)
+		pd_thermo = rl.ReadThermo(0)
+	"""
 	def __init__(self, logfile):
+		"""
+		logfile: log file name
+		"""
 		super(ReadLog, self).__init__()
 		self.logfile = logfile
 
 	def timeunit(self,x):
+		"""
+		fs to ps
+		x: time, unit/fs
+		"""
 		x = x*1e-3 #fs2ps
 		return x
 
 	def ReadUD(self):
 		'''
-		read line number of thermo info from logfile
+		read line number of thermo info from logfile, return thermou_list,thermod_list
 		'''
 		LogFile = self.logfile
 		try:
@@ -95,6 +108,10 @@ class ReadLog(object):
 		return thermou_list,thermod_list
 
 	def ReadThermo(self,nf_log=0):
+		"""
+		read thermo from logfile, return pd_thermo
+		nf_log: number of thermo frames in log file, default nf_log = 0
+		"""
 		thermou_list,thermod_list = self.ReadUD()
 		L_u = len(thermou_list)
 		L_d = len(thermod_list)
@@ -123,6 +140,9 @@ class ReadLog(object):
 		return pd_thermo
 
 	def ReadRunTime(self):
+		"""
+		read Total Run Time from logfile
+		"""
 		LogFile=self.logfile
 		with open(LogFile,"r",encoding="utf-8") as lf:
 			for index, line in enumerate(lf,1):
@@ -141,6 +161,9 @@ class ReadLog(object):
 		return 
 
 	def ReadTimestep(self):
+		"""
+		read Time step from logfile, return time_step
+		"""
 		LogFile=self.logfile
 		with open(LogFile,"r",encoding="utf-8") as lf:
 			have_timestep=[]
