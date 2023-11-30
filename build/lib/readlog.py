@@ -4,8 +4,8 @@ read lammps log file for some thermo data
 """
 import numpy as np
 import pandas as pd
-# from pathlib import Path
 import matplotlib.pyplot as plt
+import time
 
 def __version__():
 	version = "1.2.3"
@@ -13,26 +13,35 @@ def __version__():
 
 def print_readlog():
     cloud = [
-	"                        _  _               ",
 	" _ __   ___   __ _   __| || |  ___    __ _ ",
 	"| '__| / _ \ / _` | / _` || | / _ \  / _` |",
 	"| |   |  __/| (_| || (_| || || (_) || (_| |",
 	"|_|    \___| \__,_| \__,_||_| \___/  \__, |",
 	"                                     |___/ ",
     ]
-    print("\n")
     print(22*"- ")
-    print(22*". ")
+    print(22*"..")
     for line in cloud:
         print(line)
     version = __version__()
     print('@readlog-'+version,", Good Luck!")
-    print(22*". ")
+    print(22*"..")
     print(22*"- ")
     return None
 
 print_readlog()
 
+def print_line(func):
+    
+    def wrapper(*args, **kwargs):
+        print(21*"-","ReadLog Start ",21*"-")
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(20*"-","Run time:",round(elapsed_time,2),"s ",20*"-")
+        return result
+    return wrapper
 
 class ReadLog(object):
 	"""
@@ -48,14 +57,6 @@ class ReadLog(object):
 		"""
 		super(ReadLog, self).__init__()
 		self.logfile = logfile
-
-	def timeunit(self,x):
-		"""
-		fs to ps
-		x: time, unit/fs
-		"""
-		x = x*1e-3 #fs2ps
-		return x
 
 	def ReadUD(self):
 		'''
@@ -106,7 +107,8 @@ class ReadLog(object):
 				print("Warning: Your logfile is incomplete...\nPlease check it.")
 
 		return thermou_list,thermod_list
-
+	
+	@print_line
 	def ReadThermo(self,nf_log=0):
 		"""
 		read thermo from logfile, return pd_thermo
@@ -138,7 +140,8 @@ class ReadLog(object):
 			else:
 				pass
 		return pd_thermo
-
+	
+	@print_line
 	def ReadRunTime(self):
 		"""
 		read Total Run Time from logfile
@@ -150,16 +153,13 @@ class ReadLog(object):
 					isTTime = True
 			try:
 				if isTTime == True:
-					print("\n-------------------------------\n")
-					print("---", line)					
-					print("-------------------------------\n")
+					print("\n"+line)					
 			except:
-				print("\n-------------------------------\n")
-				print("Warning: No Total wall time in Your Logfile...\n\nPlease check it.")
-				print("\n-------------------------------\n")
+				print("Warning: No 'Total wall time' in Your Logfile...\n\nPlease check it.")
 	
 		return 
 
+	@print_line
 	def ReadTimestep(self):
 		"""
 		read Time step from logfile, return time_step
@@ -171,48 +171,25 @@ class ReadLog(object):
 				if "timestep" in line:
 					have_timestep.append(line)
 
-		# time_step = int(time_step.strip().split()[1])
-		# print(have_timestep)
 		for ht in have_timestep:
 			if "${" in ht or "}" in ht or "reset_" in ht or "Performance" in ht or "variable" in ht:
 				pass
 			else:
 				try:
-					print(ht)
+					# print(ht)
 					time_step = int(ht.strip().split()[1])
+					print("Time step =",time_step)
 					return time_step
 				except:
 					print("Warning: No 'timestep' in Your Logfile...\n\nPlease check it.")
+					return None
 
 
 if __name__ == '__main__':
-	path = "./"
-	logfile = "log.lammps"
-	# logfile = "log_incomplete.lammps"
-	atm2mPa = 0.101325
+
+	logfile = "1_hydrate_dissociation_log.lammps"
 	nf_log = 0 # The number of logs in logfile
-
-	# Path(path+"imgs/").mkdir(parents=True,exist_ok=True)
-	rl = ReadLog(path+logfile) 
+	rl = ReadLog(logfile) 
+	rl.ReadThermo(nf_log)
 	rl.ReadRunTime()
-
-	"""
-	print("*",20*"-","Reading frames of themo",20*"-","*")
-	thermou_list,thermod_list = rl.ReadUD(path+logfile)
-	pd_thermo = rl.ReadThermo(path+logfile,thermou_list,thermod_list,nf_log)
-	print("Your label list of thermo :\n",pd_thermo.columns)
-	print("*",20*"-","Reading END!!!!!!!!!!!!",20*"-","*")
-	plt.rc('font', family='Times New Roman', size=22)
-	fig = plt.figure(figsize=(12, 10))
-	ax = fig.add_subplot(1,1,1)
-	ax.plot(pd_thermo["Step"]*1e-3,pd_thermo['PotEng'],color='r',label="PotEng")
-	plt.legend(loc="best")
-	# ax.set_xlim([0,10000])
-	# ax.set_ylim([-800,800])
-	ax.set_xlabel("Time (ps)")
-	ax.set_ylabel("PotEng (kcal/mol)")
-	# ax.grid(True)
-	
-	# plt.savefig(path+"imgs/PressTemp.png",dpi=300)
-	# plt.show()	
-	"""	
+	rl.ReadTimestep()
