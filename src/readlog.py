@@ -135,10 +135,19 @@ class ReadLog(object):
 				try:
 
 					thermo_col = np.loadtxt(LogFile,dtype="str",encoding='utf-8',skiprows=thermou_list[i]-1,max_rows=1)
-					thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='utf-8')#.reshape((1,-1))
+
+					try:
+						thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='utf-8')#.reshape((1,-1))
+					except:				
+						thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i]+1,max_rows=n_line,encoding='utf-8')#.reshape((1,-1))
+				
 				except:
 					thermo_col = np.loadtxt(LogFile,dtype="str",encoding='gb18030',skiprows=thermou_list[i]-1,max_rows=1)
-					thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='gb18030')#.reshape((1,-1))
+
+					try:
+						thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i],max_rows=n_line,encoding='gb18030')#.reshape((1,-1))
+					except:				
+						thermo_data = np.loadtxt(LogFile,skiprows=thermou_list[i]+1,max_rows=n_line,encoding='gb18030')#.reshape((1,-1))
 					
 				pd_thermo = pd.DataFrame(thermo_data,columns=thermo_col)
 			else:
@@ -224,9 +233,10 @@ def print_log(log_file_name):
 
 if __name__ == '__main__':
 
-	logfile = "1_hydrate_dissociation_log.lammps"
-	nf_log = 0 # The number of logs in logfile
+	logfile = "1_4DPrintingHydrogel_log.lammps"
+	nf_log = 3 # The number of logs in logfile
 	rl = ReadLog(logfile) 
-	rl.ReadThermo(nf_log)
-	rl.ReadRunTime()
-	rl.ReadTimestep()
+	df = rl.ReadThermo(nf_log)
+	print(df)
+	# rl.ReadRunTime()
+	# rl.ReadTimestep()
